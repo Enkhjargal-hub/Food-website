@@ -9,7 +9,7 @@ const userShema = new Schema(
     address: { type: String },
     role: {
       type: String,
-      email: ["ADMIN", "USER"],
+      enum: ["ADMIN", "USER"],
       default: "USER",
     },
     orderedFoods: { type: [Schema.Types.ObjectId], ref: "Orders" },
@@ -20,4 +20,6 @@ const userShema = new Schema(
   }
 );
 
-export const UserModel = model.Users || model("Users", userShema);
+export const UserModel = model("Users", userShema); 
+
+

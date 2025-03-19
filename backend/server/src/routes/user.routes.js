@@ -1,9 +1,10 @@
 import express from "express";
-import { getAllUsers } from "../controllers/users/get-all-users.js";
-import { createUser } from "../controllers/users/create-user.js";
+import {getAllUsers} from "../controllers/users/get-all-users.js"
+import {createUser} from "../controllers/users/create-users.js"
 import { getUser } from "../controllers/users/get-user.js";
 import { updateUser } from "../controllers/users/update-user.js";
-import { authorize } from "../../middleware/authorize.js";
+import { authorize } from "../middleware/authorize.js";
+import { get } from "mongoose";
 // import { deleteUser } from "../resolvers/users/delete-user.js";
 
 
