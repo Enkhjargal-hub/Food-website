@@ -7,6 +7,9 @@ const authRouter = Router();
 authRouter
   .post("/sign-up", signUp)   
   .post("/sign-in", signIn)   
-  .post("/sign-out", (req, res) => res.json({ title: "Sign out" }));
+  .post("/sign-out", (req, res) => {
+    res.clearCookie("token");
+    res.json({ message: "Амжилттай гарлаа" });
+  });
 
 export default authRouter;
