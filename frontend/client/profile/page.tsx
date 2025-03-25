@@ -100,7 +100,7 @@ const Profile = () => {
                       src={item.food.image}
                       alt={item.food.name}
                       className="w-full h-48 object-cover rounded-xl mb-4"
-                    /> */}
+                    /> */} 
                     <div className="text-center">
                       <h4 className="text-lg font-semibold text-gray-800">
                         {item.food.name}
