@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { sendRequest } from "@/lib/send-request";
+import { sendRequest } from "../lib/send-request";
 import { useRouter } from "next/navigation";
 
 const PasswordReset = () => {

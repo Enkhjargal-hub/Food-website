@@ -1,39 +1,118 @@
-// "use client";
-// import { useState } from "react";
-// import axios from "axios";
-// import { useRouter } from "next/navigation";
+"use client";
 
-// export default function Signup() {
-//   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
-//   const [error, setError] = useState("");
-//   const router = useRouter();
+import React, { useState } from "react";
+import {sendRequest} from "../../client/lib/send-request"
+import {useRouter} from "next/navigation"
 
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
+const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post("http://localhost:8000/api/auth/signup", formData);
-//       alert(res.data.message);
-//       router.push("/auth/login"); // Амжилттай бол нэвтрэх хуудас руу
-//     } catch (err: any) {
-//       setError(err.response?.data?.message || "Алдаа гарлаа");
-//     }
-//   };
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-//   return (
-//     <div className="max-w-md mx-auto p-4">
-//       <h2 className="text-2xl font-bold mb-4">Бүртгүүлэх</h2>
-//       {error && <p className="text-red-500">{error}</p>}
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <input name="name" type="text" placeholder="Нэр" onChange={handleChange} className="w-full p-2 border" required />
-//         <input name="email" type="email" placeholder="Имэйл" onChange={handleChange} className="w-full p-2 border" required />
-//         <input name="password" type="password" placeholder="Нууц үг" onChange={handleChange} className="w-full p-2 border" required />
-//         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Бүртгүүлэх</button>
-//       </form>
-//     </div>
-//   );
-// }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
 
+    setLoading(true);
+
+    try {
+      const response = await sendRequest.post("/user/signup", {
+        email,
+        password,
+      });
+
+      if (response.status === 201) {
+        router.push("/login");
+      }
+    } catch (error) {
+      console.error("Sign up error:", error);
+      setError("Error occurred during sign up.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-row  justify-between bg-white">
+      <div className="w-[40vw] h-screen flex justify-center items-center">
+        <div className=" max-w-md p-8 space-y-4 rounded-xl shadow-lg bg-white">
+          <h2 className="text-3xl font-bold text-center text-gray-800">
+            Join Us!
+          </h2>
+          <p className="text-center text-gray-500">Create your account</p>
+
+          {error && <div className="text-red-500 text-center">{error}</div>}
+
+          <form onSubmit={handleSignUp} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-gray-600">
+                Email:
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-gray-600">
+                Password:
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="confirmPassword" className="block text-gray-600">
+                Confirm Password:
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+            >
+              {loading ? "Signing Up..." : "Sign Up"}
+            </button>
+            <button
+              type="button"
+              className="w-full py-2 bg-gray-100 text-blue rounded-lg hover:bg-gray-200 transition duration-300"
+              onClick={() => router.push(`/login/`)}
+            >
+              Already have an account? Log In
+            </button>
+          </form>
+        </div>
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1607273685680-6bd976c5a5ce?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        className="w-[60vw] h-screen object-cover"
+      />
+    </div>
+  );
+};
+
+export default SignUp;

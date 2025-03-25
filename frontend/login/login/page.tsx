@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { sendRequest } from "@/lib/send-request";
+import {sendRequest} from "../../client/lib/send-request"
 import axios from "axios";
 
 const Login = () => {
