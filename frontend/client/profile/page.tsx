@@ -50,7 +50,7 @@ const Profile = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-gray-50">
-      {/* Profile Header */}
+      
       <div className="text-center mb-12">
         <h1 className="text-3xl font-bold text-gray-800">
           Welcome, {userData.email}
