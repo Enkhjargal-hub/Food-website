@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import { usersRouter } from "./routes/user.routes.js";
-
-// import userRouter from "./routes/user.routes.js";
 // import productRouter from "./routes/product.routes.js";
 // import foodRouter from "./routes/food.routes.js";
 // import orderRouter from "./routes/order.routes.js";
@@ -25,7 +23,7 @@ app.use(express.json());
 // Маршрутууд
 app.use("/user", usersRouter);
 // app.use("/food", foodRouter);
-// app.use("/order", orderRouter);
+app.use("/order", orderRouter);
 // app.use("/product", productRouter);
 
 app.listen(port, () => {

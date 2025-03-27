@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { sendRequest } from "../../lib/send-request";
-import {CartType, OrderType} from "../../lib/types";
+import { CartType, OrderType } from "../../lib/types";
 
 const Order = () => {
   const [showOrders, setShowOrders] = useState(false);
@@ -14,7 +14,7 @@ const Order = () => {
     return {};
   });
 
-  // Fetch orders for the logged-in user
+  
   const fetchOrders = async () => {
     const token = localStorage.getItem("auth_token");
 
@@ -23,6 +23,7 @@ const Order = () => {
         headers: { Authorization: "Bearer " + token },
       });
       setOrders(user.orderedFoods);
+      console.log("Orders:", user.orderedFoods);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
@@ -36,9 +37,7 @@ const Order = () => {
 
   const placeOrder = async () => {
     if (Object.keys(cart).length === 0) {
-      alert(
-        "Your cart is empty. Add items to the cart before placing an order."
-      );
+      alert("Your cart is empty. Add items to the cart before placing an order.");
       return;
     }
 
@@ -170,7 +169,10 @@ const Order = () => {
                   </p>
                   <p className="text-gray-400">Status: {order.status}</p>
                   <p className="text-gray-500 text-sm">
-                    Ordered on: {new Date(order.createdAt).toLocaleString()}
+                    Ordered on:{" "}
+                    {order.createdAt
+                      ? new Date(order.createdAt).toLocaleString()
+                      : "Date not available"}
                   </p>
 
                   <div className="mt-4">
@@ -181,19 +183,19 @@ const Order = () => {
                       >
                         <div>
                           <h4 className="text-md font-semibold text-white">
-                            {food.name}
+                            {food.food.name}
                           </h4>
                           <p className="text-gray-400">
                             Quantity: {food.quantity}
                           </p>
                         </div>
-                        {/* <img
+                        <img
                           src={
-                            food.image || "https://via.placeholder.com/100x100"
+                            food.food.image || "https://via.placeholder.com/100x100"
                           }
-                          alt={food.name}
+                          alt={food.food.name}
                           className="w-12 h-12 object-cover rounded-md"
-                        /> */}
+                        />
                       </div>
                     ))}
                   </div>

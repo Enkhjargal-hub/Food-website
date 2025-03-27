@@ -1,5 +1,5 @@
 import { UserModel } from "../../models/user-schema.js";
-import { authorize } from "../../middleware/authorize.js";
+import {authorize} from "../../middleware/authorize.js"
 
 export const updateUser = async (req, res) => {
     try {

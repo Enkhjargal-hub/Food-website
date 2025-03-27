@@ -1,4 +1,3 @@
-// import { UserModel } from "../../models/user.schema.js";
 
 import { UserModel } from "../../models/user-schema.js";
 
