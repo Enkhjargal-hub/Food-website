@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
-import { sendRequest } from "../lib/send-request";
-import { Fish } from "lucide-react";
-import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
+
+import { Fish, Plus } from "lucide-react";
 
 type FoodCategory = {
   _id: string;
@@ -27,16 +24,24 @@ const categoryEmojis: Record<string, React.ReactNode> = {
   seafoods: <Fish />,
 };
 
+interface BodyProps {
+  foodsData: Food[];
+  categories: FoodCategory[];
+  selectedCategory: string | null;
+  setSelectedCategory: (category: string | null) => void;
+  setShowFoodModal: (value: boolean) => void;
+  setSelectedFood: (food: Food) => void;
+  cartNotification: string | null;
+}
+
 const Body = ({
   foodsData,
   categories,
-  selectedCategory,
   setSelectedCategory,
   setShowFoodModal,
   setSelectedFood,
-  addToCart,
-  cartNotification
-}: any) => {
+  cartNotification,
+}: BodyProps) => {
   return (
     <div className="bg-black">
       {cartNotification && (
@@ -45,7 +50,7 @@ const Body = ({
         </div>
       )}
 
-      {/* Categories Section */}
+     
       <div className="flex justify-center space-x-4 mt-10">
         <button
           onClick={() => setSelectedCategory(null)}
@@ -53,7 +58,7 @@ const Body = ({
         >
           All
         </button>
-        {categories?.map((category: FoodCategory) => (
+        {categories.map((category) => (
           <button
             key={category._id}
             onClick={() => setSelectedCategory(category._id)}
@@ -75,7 +80,7 @@ const Body = ({
           {foodsData.length === 0 ? (
             <p className="text-lg text-center text-gray-600">Loading...</p>
           ) : (
-            foodsData.map((food: Food) => (
+            foodsData.map((food) => (
               <div
                 key={food._id}
                 className="max-w-sm w-full bg-[rgb(33,25,34)] shadow-lg rounded-lg overflow-hidden relative"
