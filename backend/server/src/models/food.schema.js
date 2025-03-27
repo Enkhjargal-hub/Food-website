@@ -1,12 +1,18 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
-const {Schema, model, models} = mongoose;
+const foodSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    image: { type: String },
+    ingredients: { type: String },
+    category: {type: Schema.Types.ObjectId, req: "Category", required: true},
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const productSchema = new Schema ({
-    name: String,
-    price: {type: Number, requered: true},
-    description: String,
-    quantity: {type: Number, requered: true },
-});
-
-export const Products = models.Products || model("Products", productSchema);
+const foodModel = model('Food', foodSchema);
+export default foodSchema;

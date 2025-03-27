@@ -1,12 +1,12 @@
-import express from "express";
-import { getAllFoods, getFoodById, createFood, updateFood, deleteFood } from "../controllers/food.controller.js";
+import { Router } from "express";
+import { get } from "mongoose";
+import { getFood } from "../controllers/food/get-food.js";
 
-const router = express.Router();
+const orderRouter= Router();
 
-router.get("/", getAllFoods);
-router.get("/:foodId", getFoodById);
-router.post("/", createFood);
-router.patch("/:foodId", updateFood);
-router.delete("/:foodId", deleteFood);
+foodRouter.get("/:foodId", getFood);
+// router.post("/", createFood);
+// router.patch("/:foodId", updateFood);
 
-export default router;
+
+export default {foodRouter};

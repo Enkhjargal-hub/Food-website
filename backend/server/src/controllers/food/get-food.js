@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getAllFoods = async () => {
+export const getFood = async () => {
   try {
     const response = await axios.get("http://localhost:3000/food");
     return response.data;

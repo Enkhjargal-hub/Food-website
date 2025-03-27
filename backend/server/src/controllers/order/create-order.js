@@ -1,5 +1,5 @@
-import { OrderModel } from "../../models/order-schema.js";
-import { userModel } from "../../models/user.scheme.js";
+import {OrderModel} from "../../models/order-schema.js";
+
 
 export const createOrder = async (req, res) => {
   try {
