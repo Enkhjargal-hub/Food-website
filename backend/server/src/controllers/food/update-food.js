@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import foodModel from "../../models/food.scheme.js";
+import {FoodModel} from "../../models/food.schema.js"
 
 export const updateFood = async (req, res) => {
   const { id } = req.params;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FoodModel } from "../../models/food.schema";
+import {FoodModel} from "../../models/food.schema.js"
 
 export const getFood = async () => {
   try {
