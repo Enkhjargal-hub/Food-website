@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import { usersRouter } from "./routes/user.routes.js";
-// import productRouter from "./routes/product.routes.js";
 import {foodRouter} from "./routes/food.routes.js";
 import {orderRouter } from "./routes/order.routes.js";
 
@@ -24,7 +23,12 @@ app.use(express.json());
 app.use("/user", usersRouter);
 app.use("/food", foodRouter);
 app.use("/order", orderRouter);
-// app.use("/product", productRouter);
+
+
+app.get("/", (req, res) => {
+  res.json({ message: "Hello World!" });
+});
+
 
 app.listen(port, () => {
   console.log(`Сервер http://localhost:${port} порт дээр ажиллаж байна`);
