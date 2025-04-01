@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import FoodCard from "../../home/-components/FoodCard"
-import CartDriver from "../../home/-components/CartDriwer";
+import { FoodCard } from "../../home/_components/FoodCard";
+import CartDrawer from "../../home/_components/CartDrawer";
 
 interface FoodItem {
   foodId: string;
@@ -34,9 +34,7 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <CartDriver />
+      <CartDrawer />
     </div>
   );
 }
-
-

@@ -1,8 +1,8 @@
 "use client";
 
-import Layout from "./-components/Layout";
-import Hero from "./-components/Hero";
-import Menu from "./-components/Menu";
+import Layout from "./_components/Layout";
+import Hero from "./_components/Hero";
+import Menu from "./_components/Menu";
 
 export default function Home() {
   return (
@@ -12,4 +12,3 @@ export default function Home() {
     </Layout>
   );
 }
-
