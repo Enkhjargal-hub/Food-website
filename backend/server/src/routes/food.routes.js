@@ -10,5 +10,4 @@ foodRouter.get("/:foodId", getFood);
 foodRouter.post("/", createFood);
 foodRouter.patch("/:foodId", updateFood);
 
-
 export {foodRouter};
