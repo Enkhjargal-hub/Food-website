@@ -3,10 +3,6 @@
 import { createContext, useState, ReactNode, FC } from "react";
 import { Dispatch, SetStateAction } from "react";
 
-type FoodItem = {
-    foodId: string;
-    quantity: number;
-};
 
 type NewOrderInfo = {
     userId: string;

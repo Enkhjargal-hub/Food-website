@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react";
-import FoodCard from "../../home/-components/FoodCard";
-import CartDriver from "../../home/-components/CartDriver";
+import FoodCard from "../../home/-components/FoodCard"
+import CartDriver from "../../home/-components/CartDriwer";
 
 interface FoodItem {
   foodId: string;
