@@ -14,7 +14,6 @@ const Order = () => {
     return {};
   });
 
-  
   const fetchOrders = async () => {
     const token = localStorage.getItem("auth_token");
 
@@ -37,7 +36,9 @@ const Order = () => {
 
   const placeOrder = async () => {
     if (Object.keys(cart).length === 0) {
-      alert("Your cart is empty. Add items to the cart before placing an order.");
+      alert(
+        "Your cart is empty. Add items to the cart before placing an order."
+      );
       return;
     }
 
@@ -191,7 +192,8 @@ const Order = () => {
                         </div>
                         <img
                           src={
-                            food.food.image || "https://via.placeholder.com/100x100"
+                            food.food.image ||
+                            "https://via.placeholder.com/100x100"
                           }
                           alt={food.food.name}
                           className="w-12 h-12 object-cover rounded-md"

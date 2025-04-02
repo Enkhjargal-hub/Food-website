@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { FoodCard } from "../../home/_components/FoodCard";
 import CartDrawer from "../../home/_components/CartDrawer";
+import Header from "../../home/_components/Header";
+import { Footer } from "../../home/_components/Footer";
 
 interface FoodItem {
   foodId: string;
@@ -22,19 +24,23 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex justify-between">
-      <div className="flex gap-5">
-        {foods.map((food) => (
-          <div key={food.foodId} className="flex">
-            <FoodCard
-              food={food}
-              selectedFood={selectedFood}
-              setSelectedFood={setSelectedFood}
-            />
-          </div>
-        ))}
+    <div>
+      <Header />
+      <div className="flex justify-between p-4">
+        <div className="flex gap-5">
+          {foods.map((food) => (
+            <div key={food.foodId} className="flex">
+              <FoodCard
+                food={food}
+                selectedFood={selectedFood}
+                setSelectedFood={setSelectedFood}
+              />
+            </div>
+          ))}
+        </div>
+        <CartDrawer />
       </div>
-      <CartDrawer />
+      <Footer />
     </div>
   );
 }
