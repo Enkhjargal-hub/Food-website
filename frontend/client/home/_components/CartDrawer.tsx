@@ -1,8 +1,20 @@
-export default function CartDrawer() {
+interface CartDrawerProps {
+  selectedFood: { foodId: string; quantity: number };
+}
+
+const CartDrawer: React.FC<CartDrawerProps> = ({ selectedFood }) => {
   return (
-    <div className="p-4 border rounded-lg shadow-md">
-      <h2 className="text-xl font-bold">Таны сагс</h2>
-      <p className="text-gray-600">Одоогоор хоосон байна...</p>
+    <div className="cart-drawer">
+      <h2>Таны сагс:</h2>
+      {selectedFood.foodId ? (
+        <p>
+          Хоол: {selectedFood.foodId}, Тоо: {selectedFood.quantity}
+        </p>
+      ) : (
+        <p>Сагс хоосон байна</p>
+      )}
     </div>
   );
-}
+};
+
+export default CartDrawer;
