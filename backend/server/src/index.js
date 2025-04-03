@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import { FoodModel } from "./models/food.schema.js";
 
 import { usersRouter } from "./routes/user.routes.js";
 import { foodRouter } from "./routes/food.routes.js";
@@ -29,6 +30,15 @@ app.use("/order", orderRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
+});
+
+app.get("/food", async (req, res) => {
+  try {
+    const foods = await FoodModel.find(); // MongoDB-оос бүх хоолны мэдээллийг авах
+    res.json(foods);
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 app.listen(port, () => {
