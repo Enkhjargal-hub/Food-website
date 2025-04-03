@@ -6,7 +6,7 @@ const foodSchema = new Schema(
     price: { type: Number, required: true },
     image: { type: String },
     ingredients: { type: String },
-    category: {type: Schema.Types.ObjectId, req: "Category", required: true},
+    // category: {type: Schema.Types.ObjectId, req: "Category", required: true},
   },
   {
     timestamps: true,

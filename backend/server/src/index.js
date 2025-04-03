@@ -10,7 +10,7 @@ import { orderRouter } from "./routes/order.routes.js";
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 // MongoDB холболт
 mongoose
